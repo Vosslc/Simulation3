@@ -1,26 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import routes from './routes'
+import Nav from './components/Nav'
 
-function App() {
+function App () {
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      {routes}
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+//!Nesting routes???? /
+
+// import React, { Component } from 'react';
+// import './App.css';
+// import routes from './routes'
+// import Nav from './components/Nav'
+// import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+
+// const Auth = () => {
+//   <div className="">
+//     <h2>Auth</h2>
+//   </div>
+// }
+
+// class App extends Component {
+//     render() {
+//     return (
+//       <Router>
+//         <div className="App">
+//           <Nav />
+//           {routes}
+//         </div>
+//       </Router>
+//       <Route path='/' component={Auth} />
+//     );
+//   }
+// }
+
+// export default App;
+
+
