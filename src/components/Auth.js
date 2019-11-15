@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import {updateUserInfo} from '../ducks/reducer'
-// import {connect} from 'react-redux'
+import {updateUserInfo} from '../ducks/reducer'
+import {connect} from 'react-redux'
 import Swal from 'sweetalert2'
 
 class Login extends Component {
   state = {
-    email: '',
+    username: '',
     password: ''
   }
 
@@ -16,9 +16,9 @@ class Login extends Component {
   }
 
   login = () => {
-    const {email, password} = this.state
+    const {username, password} = this.state
     axios
-      .post('/auth/login', {email, password})
+      .post('/auth/login', {username, password})
       .then(res => {
         this.props.updateUserInfo(res.data.user)
         Swal.fire(res.data.message)
@@ -30,10 +30,9 @@ class Login extends Component {
   }
 
   register = () => {
-    if (this.state.password1 === this.state.password2) {
-      const {name, email, password1:password} = this.state
+      const { username, password } = this.state
       axios
-        .post('/auth/register', {name, email, password})
+        .post('/auth/register', {username, password})
         .then(res => {
           console.log(res.data)
           this.props.updateUserInfo(res.data.user)
@@ -41,18 +40,15 @@ class Login extends Component {
         .catch(err => {
           console.log(err.response.data.message)
         })
-    } else {
-      console.log('passwords dont match')
-    }
   }
   
   render() {
     return (
       <div>
         <input
-          onChange={e => this.handleChange('email', e.target.value)}
-          value={this.state.email}
-          placeholder="Email"
+          onChange={e => this.handleChange('username', e.target.value)}
+          value={this.state.username}
+          placeholder="Username"
           type="text"
         />
         <input
@@ -72,5 +68,5 @@ class Login extends Component {
   }
 }
 
-export default (Login)
-// export default connect(null, {updateUserInfo})(Login)
+// export default (Login)
+export default connect(null, {updateUserInfo})(Login)
